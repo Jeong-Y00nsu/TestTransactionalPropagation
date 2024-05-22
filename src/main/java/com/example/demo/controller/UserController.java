@@ -15,14 +15,14 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/demo")
-public class Controller {
+public class UserController {
 
     UserService userService;
 
     AyncUserService ayncUserService;
 
     @Autowired
-    public Controller(UserService userService, AyncUserService ayncUserService){
+    public UserController(UserService userService, AyncUserService ayncUserService){
         this.userService = userService;
         this.ayncUserService = ayncUserService;
     }
