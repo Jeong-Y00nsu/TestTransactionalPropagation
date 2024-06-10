@@ -4,8 +4,8 @@ import com.example.demo.constant.Constant;
 import com.example.demo.domain.Response;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserRequest;
-import com.example.demo.service.AyncUserService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.ayncUser.AyncUserService;
+import com.example.demo.service.ayncUser.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,14 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/demo")
-public class UserController {
+public class AsyncSyncUserController {
 
     UserService userService;
 
     AyncUserService ayncUserService;
 
     @Autowired
-    public UserController(UserService userService, AyncUserService ayncUserService){
+    public AsyncSyncUserController(UserService userService, AyncUserService ayncUserService){
         this.userService = userService;
         this.ayncUserService = ayncUserService;
     }

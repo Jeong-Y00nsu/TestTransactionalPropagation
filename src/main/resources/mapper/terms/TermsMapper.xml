@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.terms.TermsMapper">
+
+    <insert id="insertTerm" parameterType="com.example.demo.domain.Term">
+        INSERT INTO TERMS (USER_ID, SERVICE_TYPE, TERMS_CODE, AGREED_DT, WITHDRAW_DT)
+        VALUES (#{term.userId},#{term.serviceType},#{term.termsCode},NOW(),null);
+    </insert>
+
+    <delete id="deleteTerm" parameterType="String">
+        DELETE FROM TERMS WHERE USER_ID = #{userId}
+    </delete>
+
+    <select id="selectUserTermsByUserId" parameterType="String" resultType="termResultMap">
+        SELECT USER_ID, SERVICE_TYPE, TERMS_CODE, AGREED_DT, WITHDRAW_DT FROM TERMS WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="selectAllTerms" resultType="termResultMap">
+        SELECT USER_ID, SERVICE_TYPE, TERMS_CODE, AGREED_DT, WITHDRAW_DT FROM TERMS
+    </select>
+
+    <delete id="deleteAllTerms">
+        DELETE FROM TERMS;
+    </delete>
+
+    <resultMap id="termResultMap" type="com.example.demo.domain.Term">
+        <result property="userId" column="USER_ID"/>
+        <result property="serviceType" column="SERVICE_TYPE"/>
+        <result property="termsCode" column="TERMS_CODE"/>
+        <result property="agreedDt" column="AGREE_DT"/>
+        <result property="withdrawDt" column="WITHDRAW_DT"/>
+    </resultMap>
+</mapper>

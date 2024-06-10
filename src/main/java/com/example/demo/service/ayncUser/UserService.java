@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.service.ayncUser;
 
 import com.example.demo.constant.Constant;
 import com.example.demo.domain.Response;
 import com.example.demo.domain.User;
-import com.example.demo.mapper.UserMapper;
+import com.example.demo.mapper.user.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

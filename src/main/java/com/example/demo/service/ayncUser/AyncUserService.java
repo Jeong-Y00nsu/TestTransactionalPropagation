@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.ayncUser;
 
 import com.example.demo.domain.Response;
 import com.example.demo.domain.User;

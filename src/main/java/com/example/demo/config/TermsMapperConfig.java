@@ -14,26 +14,25 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.example.demo.mapper.user", sqlSessionFactoryRef = "userSqlSessionFactory")
-public class UserMapperConfig {
+@MapperScan(basePackages = "com.example.demo.mapper.terms", sqlSessionFactoryRef = "termsSqlSessionFactory")
+public class TermsMapperConfig {
 
-    @Bean(name = "userDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.user")
-    public DataSource userDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+    @Bean(name = "termsDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.terms")
+    public DataSource termsDataSource(){ return DataSourceBuilder.create().build();}
 
-    @Bean(name = "userSqlSessionFactory")
-    public SqlSessionFactory userSqlSessionFactory(@Qualifier("userDataSource") DataSource dataSource) throws Exception {
+    @Bean(name="termsSqlSessionFactory")
+    public SqlSessionFactory termsSqlSessionFactory(@Qualifier("termsDataSource") DataSource dataSource) throws Exception{
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setMapperLocations(
-                new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/user/*.xml"));
+                new PathMatchingResourcePatternResolver().getResource("classpath:/mapper/terms/*.xml"));
         return sessionFactory.getObject();
     }
 
-    @Bean(name = "userSqlSessionTemplate")
-    public SqlSessionTemplate userSqlSessionTemplate(@Qualifier("userSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    @Bean(name="termsSqlSessionTemplate")
+    public SqlSessionTemplate termsSqlSessionTemplate(@Qualifier("termsSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception{
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+
 }
